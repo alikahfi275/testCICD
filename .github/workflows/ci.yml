@@ -35,9 +35,13 @@ jobs:
           java-version: '17'
 
       - name: 📲 Setup Android SDK
-        run: |
-          echo "y" | sdkmanager --licenses
-          sdkmanager "platform-tools" "build-tools;30.0.3" "android-30"
+        uses: android-actions/setup-android@v3
+
+      - name: ✅ Accept Android SDK Licenses
+        run: yes | sdkmanager --licenses
+
+      - name: 📦 Install Android SDK Packages
+        run: sdkmanager "platform-tools" "build-tools;30.0.3" "platforms;android-30"
 
       - name: 🤖 Build APK (Android)
         run: |
