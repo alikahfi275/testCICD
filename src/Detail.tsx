@@ -1,12 +1,17 @@
-import {View, Text} from 'react-native';
+import {View, Text, Button} from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 
-const Detail = (props: any) => {
-  console.log(props);
+const Detail = () => {
+  const navigation: any = useNavigation();
 
   return (
-    <View>
-      <Text>Detail</Text>
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <Text>Details Screen</Text>
+      <Button
+        title="Go to Profile again"
+        onPress={() => navigation.push('Detail')}
+      />
     </View>
   );
 };
