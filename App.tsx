@@ -1,11 +1,15 @@
-import {Text, View} from 'react-native';
 import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import RootStack from './src/RootStack';
+import {AppProvider} from './src/AppProvider';
 
 const App = () => {
   return (
-    <View>
-      <Text>App</Text>
-    </View>
+    <AppProvider>
+      <NavigationContainer>
+        <RootStack />
+      </NavigationContainer>
+    </AppProvider>
   );
 };
 
