@@ -43,13 +43,14 @@ jobs:
       - name: 📦 Install Android SDK Packages
         run: sdkmanager "platform-tools" "build-tools;30.0.3" "platforms;android-30"
 
-      - name: 🤖 Build APK (Android)
-        run: |
-          cd android
-          ./gradlew assembleDebug
+      # - name: 🤖 Build APK (Android)
+      #   run: |
+      #     cd android
+      #     ./gradlew assembleDebug
 
-      - name: 📦 Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-debug.apk
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+      # Untuk BUILD APK dan upload ke Artifacts
+      # - name: 📦 Upload APK
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: app-debug.apk
+      #     path: android/app/build/outputs/apk/debug/app-debug.apk
