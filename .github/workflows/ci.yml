@@ -1,0 +1,45 @@
+name: React Native CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v3
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 📦 Install Dependencies
+        run: npm install
+
+      - name: ✅ Run Lint
+        run: npm run lint
+
+      - name: 🧪 Run Tests
+        run: npm test
+
+      - name: 🔧 Setup Java (untuk build Android)
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 📲 Setup Android SDK
+        run: |
+          echo "y" | sdkmanager --licenses
+          sdkmanager "platform-tools" "build-tools;30.0.3" "android-30"
+
+      - name: 🤖 Build APK (Android)
+        run: |
+          cd android
+          ./gradlew assembleDebug
